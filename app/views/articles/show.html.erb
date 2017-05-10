@@ -1,5 +1,12 @@
 <h1><%= @show_current_article.title %></h1>
 <p><%= @show_current_article.body %></p>
-<%= link_to "<< Back to Articles List", articles_path %>
+
 <%= link_to "Delete", article_path(@show_current_article), method: :delete, data: {confirm: "Really? delete the article?"} %>
 <%= link_to "Edit", edit_article_path(@show_current_article) %>
+<br/>
+<%= render partial: 'comments/form' %>
+<br/>
+<%= link_to "<< Back to Articles List", articles_path %>
+
+<h3>Comments (<%= @show_current_article.comments.size %>)</h3>
+<%= render partial: 'articles/comment', collection: @show_current_article.comments %>
